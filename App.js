@@ -18,6 +18,8 @@ import Movies from './modules/User/Movies';
 import Profile from './modules/User/Profile';
 import Favs from './modules/User/Favs';
 import Show from './modules/User/Show';
+import Medicines from './modules/User/Medicines';
+import ShowM from './modules/User/ShowM';
 import { Container } from 'native-base';
 import { ScreenStackHeaderCenterView } from 'react-native-screens';
 
@@ -48,15 +50,15 @@ class App extends React.Component{
 
       return(
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
+          <Stack.Navigator initialRouteName="Medicines">
 
             <Stack.Screen name="Register" component={Register} />
           
             <Stack.Screen name="Login" component={Login} />
 
-            <Stack.Screen name="Welcome" component={Welcome} />
-
             <Stack.Screen name="Resume" component={Resume} />
+
+            <Stack.Screen name="Medicines" component={Medicines} />
 
             <Stack.Screen name="Movies" component={Movies} />
 
@@ -65,6 +67,8 @@ class App extends React.Component{
             <Stack.Screen name="Favs" component={Favs} />
 
             <Stack.Screen name="Show" component={Show} />
+
+            <Stack.Screen name="ShowM" component={ShowM} />
             
           </Stack.Navigator>
         </NavigationContainer>

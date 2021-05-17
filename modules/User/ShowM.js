@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 import { Image, StyleSheet} from 'react-native';
 import Nav from "../Components/Nav";
 import API from '../Utils/API';
-class Show extends Component {
+class ShowM extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,10 +13,10 @@ class Show extends Component {
     }
 
     async componentDidMount() {
-        //console.log("Show: " + this.props.route.params.id);
-        let response = await API.getMovie(this.props.route.params.id);
-        this.setState({response: response.data.movie})
-        console.log(this.state.response.title);
+        // console.log("Show: " + this.props.route.params.id);
+        let response = await API.getMedicinesItem(this.props.route.params.id);
+        this.setState({response: response})
+        // console.log(this.state.response.name);
     }
 
     render() {
@@ -24,22 +24,25 @@ class Show extends Component {
         return(
             <Container>
                 <Header>
-                    <Text style={ styles.text }>{this.state.response.title_long}</Text>
+                    <Text style={ styles.text }>{this.state.response.name}</Text>
                 </Header>
                 <Content>
                     <Label> </Label>
                     <View  style={styles.image}>
-                        <Image source={{uri: this.state.response.large_cover_image}} style={{height:308, width:220}} />
+                        <Image source={{uri: this.state.response.image}} style={{height:308, width:220}} />
                     </View>
                     <Label> </Label>
-                    <Label style = {styles.body}>Sinopsis</Label>
-                    <Text> {this.state.response.description_full}</Text>
+                    <Label style = {styles.body}>Nombre</Label>
+                        <Text> {this.state.response.name}</Text>
                     <Label> </Label>
-                    <Label style = {styles.body}>Genero</Label>
-                    <Text> {this.state.response.genres} </Text>
+                    <Label style = {styles.body}>Dosis</Label>
+                        <Text> {this.state.response.dosis} </Text>
                     <Label> </Label>
-                    <Label style = {styles.body}>Puntuación</Label>
-                    <Text> {this.state.response.rating}</Text>
+                    <Label style = {styles.body}>Descripcion</Label>
+                        <Text> {this.state.response.description}</Text>
+                    <Label> </Label>
+                    <Label style = {styles.body}>Precio</Label>
+                        <Text> {this.state.response.cost}</Text>
                     <Label> </Label>
                     <View style={styles.viewHeader}>
                         <Text style={styles.body}>Favorito</Text>
@@ -97,4 +100,4 @@ const styles = StyleSheet.create({
     }
   })
 
-export default Show;
+export default ShowM;

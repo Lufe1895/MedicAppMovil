@@ -3,7 +3,6 @@ class API {
         let URL = 'https://yts.mx/api/v2/list_movies.json?limit=50';
         const query = await fetch(URL);
         const data = query.json();
-        //console.log("datos", data);
         return data;
     }
 
@@ -18,7 +17,22 @@ class API {
         let URL = 'https://yts.mx/api/v2/list_movies.json?limit=3';
         const query = await fetch(URL);
         const data = query.json();
-        //console.log("datos", data);
+        return data;
+    }
+
+    async getMedicines(){
+        let URL = 'https://lys-medicapi.herokuapp.com/';
+        const query = await fetch(URL);
+        const data = query.json();
+        //console.log("datos", data)
+        return data;
+    }
+
+    async getMedicinesItem(id){
+        let URL = 'https://lys-medicapi.herokuapp.com/' + id;
+        const query = await fetch(URL);
+        const data = query.json();
+        //console.log("datos", data)
         return data;
     }
 }
