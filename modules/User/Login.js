@@ -6,86 +6,30 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Nav from '../Components/Nav';
 
-import API from '../Utils/API';
-
-import ItemLayout from '../Components/ItemLayout';
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       navigation: props.navigation,
-      nombre: '',
-      apellido: '',
-      usuario: '',
       correo: '',
       pass: '',
       isLogin: false
     };
   }
 
-  async componentDidMount() {
-    //console.log("LoginComponent: ", this.props.route.params);
-
-    let userData = await AsyncStorage.getItem('userData');
-    userData = JSON.parse(userData);
-    if(userData) {
-      console.log('LoginComponent: ', userData);
-      this.setState({ 
-        nombre: userData.nombre,
-        apellido: userData.apellido,
-        usuario: userData.usuario,
-        correo: userData.correo,
-        pass: userData.pass,
-        result: '',
-        isLogin: userData.isLogin
-      })
+  loguear = () => {
+    if(this.state.correo == 'Calamardo' && this.state.pass == 'guapo') {
+      this.props.navigation.navigate('Movies');
     } else {
-      console.log('LoginComponent: ', "userData: is null");
+      Alert.alert("El correo o la contraseña son incorrectos");
     }
-  }
-
-  getData = async () => {
-    let response = await API.getData();
-    this.setState({result: response.data.movies })
-  }
-
-  loguear = async () => {
-    Alert.alert(this.state.nombre + " " + this.state.apellido + " " + this.state.usuario + " " + this.state.correo);
-        console.log("Entro");
-        //AsyncStorage.removeItem('userData');
   }
 
   render() {
-    const row = ({ item }) => {
-      return (
-        <Item 
-          item = { item }
-          onPress = { () => console.log(item.id) }
-        />
-      )
-    }
-
-    const Item = ({ item, onPress}) => (
-      <TouchableOpacity onPress={ onPress }>
-        <Card>
-          <CardItem header bordered>
-            <Text style={{ fontStyle: 'italic' }}>{ item.title }</Text>
-          </CardItem>
-
-          <CardItem bordered>
-            <Body>
-              <Text>{ item.summary }</Text>
-            </Body>
-          </CardItem>
-        </Card>
-      </TouchableOpacity>
-    )
-
     return (
       <Container>
         <Header>
-          <Text style={ styles.text }>Mi Aplicación Móvil</Text>
+          <Text style={ styles.text }>Login</Text>
         </Header>
         
         <Content padder style={ styles.content }>
@@ -107,14 +51,6 @@ class Login extends React.Component {
             </CardItem>
           </Card>
         </Content>
-
-        <FlatList data={ this.state.result } keyExtractor= {(x, i) => i.toString()} renderItem={ (item) => <ItemLayout datos={ item } /> } />
-
-        <Button full onPress={ this.getData }><Text>Presióname</Text></Button>
-
-        <Footer>
-          <Nav navigation={ this.state.navigation } />
-        </Footer>
       </Container>
     );
   }

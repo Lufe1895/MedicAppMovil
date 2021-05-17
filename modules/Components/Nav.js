@@ -9,35 +9,36 @@ class Nav extends React.Component {
         };
       }
 
-    welcome = () => {
-        this.props.navigation.navigate('Welcome');
+    movies = () => {
+        this.props.navigation.navigate('Movies');
     }
 
-    login = () => {
-        this.props.navigation.navigate('Login');
+    favs = () => {
+        this.props.navigation.navigate('Favs');
     }
 
-    register = () => {
-        this.props.navigation.navigate('Register');
+    profile = () => {
+        this.props.navigation.navigate('Profile');
     }
+
     render() {
         return(
             <Container>
                 <Footer>
                     <FooterTab>
-                        <Button vertical onPress={this.welcome}>
-                            <Icon name="home" />
-                            <Text>Bienvenida</Text>
+                        <Button vertical onPress={this.movies}>
+                            <Icon name="film" />
+                            <Text>Películas</Text>
                         </Button>
 
-                        <Button vertical  onPress={this.login}>
+                        <Button vertical  onPress={this.favs}>
+                            <Icon name="star" />
+                            <Text>Favoritos</Text>
+                        </Button>
+
+                        <Button vertical  onPress={this.profile}>
                             <Icon name="person" />
-                            <Text>Iniciar Sesión</Text>
-                        </Button>
-
-                        <Button vertical  onPress={this.register}>
-                            <Icon name="bookmarks" />
-                            <Text>Registro</Text>
+                            <Text>Perfil</Text>
                         </Button>
                     </FooterTab>
                 </Footer>

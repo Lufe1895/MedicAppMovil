@@ -14,6 +14,10 @@ import Register from './modules/User/Register'
 import Login from './modules/User/Login'
 import Welcome from './modules/User/Welcome';
 import Resume from './modules/Components/Resume';
+import Movies from './modules/User/Movies';
+import Profile from './modules/User/Profile';
+import Favs from './modules/User/Favs';
+import Show from './modules/User/Show';
 import { Container } from 'native-base';
 import { ScreenStackHeaderCenterView } from 'react-native-screens';
 
@@ -53,6 +57,14 @@ class App extends React.Component{
             <Stack.Screen name="Welcome" component={Welcome} />
 
             <Stack.Screen name="Resume" component={Resume} />
+
+            <Stack.Screen name="Movies" component={Movies} />
+
+            <Stack.Screen name="Profile" component={Profile} />
+
+            <Stack.Screen name="Favs" component={Favs} />
+
+            <Stack.Screen name="Show" component={Show} />
             
           </Stack.Navigator>
         </NavigationContainer>
