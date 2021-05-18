@@ -21,8 +21,9 @@ function ItemLayoutM(props) {
 
                         <Col>
                             <Text style={{fontWeight: 'bold'}}>{ props.datos.item.name }</Text>
-                            <Text>{ props.datos.item.dosis}</Text>
-                            <Text>{ props.datos.item.cost} </Text>
+                            <Text>{ props.datos.item.description.substring(0,50) }...</Text>
+                            <Text>Dosis: { props.datos.item.dosis}</Text>
+                            <Text>Precio: ${ props.datos.item.cost} </Text>
                         </Col>
                     </Row>
                 </ListItem>

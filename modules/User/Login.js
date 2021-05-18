@@ -1,28 +1,27 @@
 import React from 'react';
-import { Container, Content, Card, CardItem, Text, Footer, Header, Button, Body } from 'native-base';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { StyleSheet, FlatList, Item, Alert, Modal, Image } from 'react-native';
+import { Container, Content, Card, CardItem, Text, Header } from 'native-base';
+import { TextInput } from 'react-native-gesture-handler';
+import { StyleSheet, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Nav from '../Components/Nav';
+import API from '../Utils/API';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       navigation: props.navigation,
-      correo: '',
-      pass: '',
+      email: '',
+      password: '',
       isLogin: false
     };
   }
 
-  loguear = () => {
-    if(this.state.correo == 'Calamardo' && this.state.pass == 'guapo') {
-      this.props.navigation.navigate('Movies');
-    } else {
-      Alert.alert("El correo o la contraseña son incorrectos");
-    }
+  async loguear() {
+    Alert.alert("Funciono");
+    let data = await API.login('user@example.com', '12345678');
+    console.log(data);
+    
   }
 
   render() {
@@ -39,11 +38,11 @@ class Login extends React.Component {
             </CardItem>
 
             <CardItem TextInput>
-              <TextInput full placeholder="Correo" value={ this.state.correo } onChangeText={(correo) => this.setState({correo})}></TextInput>
+              <TextInput full placeholder="Correo" value={ this.state.email } onChangeText={(email) => this.setState({email})}></TextInput>
             </CardItem>
 
             <CardItem TextInput>
-              <TextInput full placeholder="Contraseña" value={ this.state.pass } secureTextEntry={ true } onChangeText={(pass) => this.setState({pass})}></TextInput>
+              <TextInput full placeholder="Contraseña" value={ this.state.password } secureTextEntry={ true } onChangeText={(password) => this.setState({password})}></TextInput>
             </CardItem>
 
             <CardItem footer button styles={ styles.button } bordered>

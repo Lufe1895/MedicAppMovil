@@ -35,6 +35,23 @@ class API {
         //console.log("datos", data)
         return data;
     }
+
+    async login(email, password) {
+        const query = await fetch('http://192.168.1.67:8000/api/people/login', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        console.log("datos", "hola")
+        return query;
+    }
 }
 
 export default new API()

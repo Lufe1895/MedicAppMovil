@@ -16,7 +16,6 @@ class Favs extends Component {
       this.setState({result: response.data.movies })
     }
     render() {
-        
         return(
           <Container>
             <Header>

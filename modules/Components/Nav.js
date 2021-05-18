@@ -10,7 +10,7 @@ class Nav extends React.Component {
       }
 
     movies = () => {
-        this.props.navigation.navigate('Movies');
+        this.props.navigation.navigate('Medicines');
     }
 
     favs = () => {
@@ -27,13 +27,13 @@ class Nav extends React.Component {
                 <Footer>
                     <FooterTab>
                         <Button vertical onPress={this.movies}>
-                            <Icon name="film" />
-                            <Text>Películas</Text>
+                            <Icon name="medkit" />
+                            <Text>Medicamentos</Text>
                         </Button>
 
                         <Button vertical  onPress={this.favs}>
-                            <Icon name="star" />
-                            <Text>Favoritos</Text>
+                            <Icon name="cart" />
+                            <Text>Carrito</Text>
                         </Button>
 
                         <Button vertical  onPress={this.profile}>

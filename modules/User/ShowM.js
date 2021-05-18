@@ -29,7 +29,7 @@ class ShowM extends Component {
                 <Content>
                     <Label> </Label>
                     <View  style={styles.image}>
-                        <Image source={{uri: this.state.response.image}} style={{height:308, width:220}} />
+                        <Image source={{uri: this.state.response.image}} style={{height:300, width:300}} />
                     </View>
                     <Label> </Label>
                     <Label style = {styles.body}>Nombre</Label>
@@ -43,13 +43,6 @@ class ShowM extends Component {
                     <Label> </Label>
                     <Label style = {styles.body}>Precio</Label>
                         <Text> {this.state.response.cost}</Text>
-                    <Label> </Label>
-                    <View style={styles.viewHeader}>
-                        <Text style={styles.body}>Favorito</Text>
-                        <Label> </Label>
-                        <Switch value={false}></Switch>
-                    </View>
-                    <Label> </Label>
                 </Content>
                 <Footer>
                     <Nav navigation={ this.state.navigation } />
