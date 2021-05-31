@@ -20,7 +20,8 @@ class Login extends React.Component {
   async loguear() {
     Alert.alert("Funciono");
     let data = await API.login('user@example.com', '12345678');
-    console.log(data);
+    console.log("-----------------------------------------------------------");
+    console.log("data " + JSON.stringify(data));
   }
 
   render() {

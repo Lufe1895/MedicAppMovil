@@ -1,3 +1,5 @@
+import { createNavigator } from "react-navigation";
+
 class API {
     async getData() {
         let URL = 'https://yts.mx/api/v2/list_movies.json?limit=50';
@@ -37,22 +39,31 @@ class API {
     }
 
     async login(email, password) {
-        const query = await fetch('http://192.168.1.67:8000/api/people/login', {
-            method: 'POST',
-            'mode': 'no-cors',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
+        let query = null;
+        try {
+            await fetch('http://lys-medicapp.herokuapp.com/api/people/login', {
+                method: 'post',
+                mode: 'no-cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }).then(response => {
+                query = response;
+                //console.log(response);
+            }).catch(err => {
+                console.log(err);
             })
-        });
+        } catch(e) {
+            console.log(e);
+        }
 
-        console.log("datos", "hola")
-        return query;
+        //console.log("datos" + JSON.stringify(query.url));
+        return query.json();
     }
 }
 

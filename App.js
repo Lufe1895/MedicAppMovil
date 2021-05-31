@@ -50,7 +50,7 @@ class App extends React.Component{
 
       return(
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Medicines">
+          <Stack.Navigator initialRouteName="Login">
 
             <Stack.Screen name="Register" component={Register} />
           
