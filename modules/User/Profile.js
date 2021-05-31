@@ -1,6 +1,7 @@
 import  React, { Component} from "react";
 import {Container, Content, Footer, Header, Label, Left, ListItem, Radio, Right, Text, Card, CardItem, Body, Button } from "native-base";
 import { StyleSheet, Image, View, Divider } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Nav from "../Components/Nav";
 
 class Profile extends Component {
@@ -10,6 +11,25 @@ class Profile extends Component {
             navigation: props.navigation
         };
     }
+
+    async componentDidMount() {
+        let userData = await AsyncStorage.getItem('userData')
+        userData = JSON.parse(userData)
+        if(userData){
+          this.setState(
+              {
+                name : userData.name, 
+                lastname: userData.lastname,
+                email: userData.email, 
+                phone: userData.phone,
+                address: userData.address,
+                sex: userData.sex,
+                age: userData.age
+              })
+        }else{
+          console.log('LoginComponent', "userData: is null");
+        }
+      }
 
     render() {
         return(
@@ -28,9 +48,10 @@ class Profile extends Component {
                                         </View>
                                         <Label> </Label>
                                         <View>
-                                            <Label>Calamardo</Label>
-                                            <Label>Guapo</Label>
-                                            <Label>30 / 02 / 2010</Label>  
+                                            <Label>{this.state.name}</Label>
+                                            <Label>{this.state.lastname}</Label>
+                                            <Label>{this.state.age}</Label>  
+                                            <Label>{this.state.email}</Label>
                                         </View>
                                 </View>
                                 </Body>
@@ -38,7 +59,7 @@ class Profile extends Component {
                         </Card>
                         <Card>
                             <CardItem header>
-                                <Text>Categorias</Text>
+                                <Text>Pedidos</Text>
                             </CardItem>
                             <CardItem>
                                 <Body>
@@ -53,28 +74,6 @@ class Profile extends Component {
                                         <Label> </Label>
                                         <Button disables rounded>
                                             <Text>Terror</Text>
-                                        </Button>
-                                    </View>
-                                </Body>
-                            </CardItem>
-                        </Card>
-                        <Card>
-                            <CardItem header>
-                                <Text>Clasificacion</Text>
-                            </CardItem>
-                            <CardItem>
-                                <Body>
-                                    <View style={styles.viewHeader}>
-                                        <Button disables rounded>
-                                            <Text>A</Text>
-                                        </Button>
-                                        <Label> </Label>
-                                        <Button disables rounded>
-                                            <Text>B</Text>
-                                        </Button>
-                                        <Label> </Label>
-                                        <Button disables rounded>
-                                            <Text>C</Text>
                                         </Button>
                                     </View>
                                 </Body>

@@ -26,7 +26,7 @@ class API {
         let URL = 'https://lys-medicapi.herokuapp.com/';
         const query = await fetch(URL);
         const data = query.json();
-        //console.log("datos", data)
+        console.log("datos", data)
         return data;
     }
 

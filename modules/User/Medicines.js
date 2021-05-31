@@ -19,7 +19,7 @@ class Medicines extends Component {
     async componentDidMount() {
         let response = await API.getMedicines();
         this.setState({result: response})
-        //console.log(response);
+        console.log(response);
     }
     
     render() {
