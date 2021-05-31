@@ -39,9 +39,11 @@ class API {
     async login(email, password) {
         const query = await fetch('http://192.168.1.67:8000/api/people/login', {
             method: 'POST',
+            'mode': 'no-cors',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify({
                 email: email,

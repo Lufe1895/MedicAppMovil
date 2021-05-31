@@ -21,7 +21,6 @@ class Login extends React.Component {
     Alert.alert("Funciono");
     let data = await API.login('user@example.com', '12345678');
     console.log(data);
-    
   }
 
   render() {
