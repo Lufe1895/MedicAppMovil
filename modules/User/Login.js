@@ -17,11 +17,27 @@ class Login extends React.Component {
     };
   }
 
-  async loguear() {
-    Alert.alert("Funciono");
-    let data = await API.login('user@example.com', '12345678');
-    console.log("-----------------------------------------------------------");
-    console.log("data " + JSON.stringify(data));
+  loguear = async()=>{
+    let data = await API.login(this.state.email, this.state.password);
+    console.log("data",data);
+    let datos = JSON.stringify(data);
+    if(data.name){
+      let userData = {
+        name : data.name, 
+        lastname: data.last_name,
+        email: data.email, 
+        phone: data.phone,
+        address: data.address,
+        sex: data.sex,
+        age: data.age,
+        isLogin: true
+      } 
+      AsyncStorage.setItem('userData', JSON.stringify(userData))
+      this.props.navigation.navigate('Profile')
+    }else{
+      Alert.alert(data.message);
+    }
+    
   }
 
   render() {
