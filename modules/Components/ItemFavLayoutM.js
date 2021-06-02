@@ -5,7 +5,6 @@ import { Switch, TextInput, TouchableOpacity } from 'react-native-gesture-handle
 
 function ItemFavLayout(props) {
     //console.log(props);
-
     const show = () => {
         props.navigation.navigate('Show', { id:props.datos.item.id });
     }

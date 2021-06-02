@@ -12,16 +12,12 @@ import { Ionicons } from '@expo/vector-icons';
 // Modulos Propios
 import Register from './modules/User/Register'
 import Login from './modules/User/Login'
-import Welcome from './modules/User/Welcome';
 import Resume from './modules/Components/Resume';
-import Movies from './modules/User/Movies';
 import Profile from './modules/User/Profile';
-import Favs from './modules/User/Favs';
-import Show from './modules/User/Show';
+
 import Medicines from './modules/User/Medicines';
 import ShowM from './modules/User/ShowM';
-import { Container } from 'native-base';
-import { ScreenStackHeaderCenterView } from 'react-native-screens';
+import Pedidos from './modules/User/Pedidos';
 
 const Stack = createStackNavigator();
 // const MyContext = React.createContext();
@@ -60,15 +56,11 @@ class App extends React.Component{
 
             <Stack.Screen name="Medicines" component={Medicines} />
 
-            <Stack.Screen name="Movies" component={Movies} />
-
             <Stack.Screen name="Profile" component={Profile} />
 
-            <Stack.Screen name="Favs" component={Favs} />
-
-            <Stack.Screen name="Show" component={Show} />
-
             <Stack.Screen name="ShowM" component={ShowM} />
+
+            <Stack.Screen name="Pedidos" component={Pedidos}/>
             
           </Stack.Navigator>
         </NavigationContainer>

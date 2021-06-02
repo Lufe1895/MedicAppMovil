@@ -1,32 +1,11 @@
 import { createNavigator } from "react-navigation";
 
 class API {
-    async getData() {
-        let URL = 'https://yts.mx/api/v2/list_movies.json?limit=50';
-        const query = await fetch(URL);
-        const data = query.json();
-        return data;
-    }
-
-    async getMovie(id) {
-        let URL = 'https://yts.mx/api/v2/movie_details.json?movie_id=' + id;
-        const query = await fetch(URL);
-        const data = query.json();
-        return data;
-    }
-
-    async getFav() {
-        let URL = 'https://yts.mx/api/v2/list_movies.json?limit=3';
-        const query = await fetch(URL);
-        const data = query.json();
-        return data;
-    }
-
     async getMedicines(){
         let URL = 'https://lys-medicapi.herokuapp.com/';
         const query = await fetch(URL);
         const data = query.json();
-        console.log("datos", data)
+        //console.log("datos", data)
         return data;
     }
 
@@ -38,10 +17,35 @@ class API {
         return data;
     }
 
+    async getPedidos(email){
+        let query= null;
+        try{
+            await fetch('http://lys-medicapp.herokuapp.com/api/people/pedidos',{
+                method: 'post',
+                mode: 'no-cors',
+                headers:{
+                    'Aceept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email
+                })
+            }).then(response => {
+                query = response;
+            }).catch(err =>{
+                console.log(err);
+            })
+        }catch(e){
+            console.log(e);
+        }
+        //console.log("datos" + JSON.stringify(query.url));
+        return query.json();
+    }
+
     async login(email, password) {
         let query = null;
         try {
-            await fetch('http://lys-medicapp.herokuapp.com/api/people/login', {
+            await fetch('https://lys-medicapp.herokuapp.com/api/people/login', {
                 method: 'post',
                 mode: 'no-cors',
                 headers: {
@@ -63,7 +67,8 @@ class API {
         }
 
         //console.log("datos" + JSON.stringify(query.url));
-        return query.json();
+        const data = query.json();
+        return data;
     }
 }
 
