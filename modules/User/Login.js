@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Content, Card, CardItem, Text, Header } from 'native-base';
+import { Container, Content, Card, CardItem, Text, Header,Input } from 'native-base';
 import { TextInput } from 'react-native-gesture-handler';
 import { StyleSheet, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,8 +19,8 @@ class Login extends React.Component {
 
   loguear = async()=>{
     let data = await API.login(this.state.email, this.state.password);
-    console.log("data",data);
-    let datos = JSON.stringify(data);
+    //console.log("data",data);
+    //let datos = JSON.stringify(data);
     if(data.name){
       let userData = {
         name : data.name, 
@@ -37,7 +37,6 @@ class Login extends React.Component {
     }else{
       Alert.alert(data.message);
     }
-    
   }
 
   render() {
@@ -54,11 +53,11 @@ class Login extends React.Component {
             </CardItem>
 
             <CardItem TextInput>
-              <TextInput full placeholder="Correo" value={ this.state.email } onChangeText={(email) => this.setState({email})}></TextInput>
+              <Input placeholder="Correo" value={ this.state.email } onChangeText={(email) => this.setState({email})}></Input>
             </CardItem>
 
             <CardItem TextInput>
-              <TextInput full placeholder="Contraseña" value={ this.state.password } secureTextEntry={ true } onChangeText={(password) => this.setState({password})}></TextInput>
+              <Input placeholder="Contraseña" value={ this.state.password } secureTextEntry={ true } onChangeText={(password) => this.setState({password})}></Input>
             </CardItem>
 
             <CardItem footer button styles={ styles.button } bordered>

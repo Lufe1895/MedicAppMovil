@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Header, Text, Footer } from 'native-base';
 import { FlatList, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import API from '../Utils/API';
-
-import ItemLayout from '../Components/ItemLayout';
+import ItemLayoutPedidos from '../Components/ItemLayoutPedidos';
 import Nav from '../Components/Nav';
 
-class Movies extends Component {
+class Pedidos extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,22 +16,25 @@ class Movies extends Component {
     }
 
     async componentDidMount() {
-        let response = await API.getData();
-        this.setState({result: response.data.movies })
+        let pedidos = await AsyncStorage.getItem('pedidosclient')
+        pedidos = JSON.parse(pedidos);
+        this.setState({result: pedidos.pedidos})
+        //console.log("Pedidos",pedidos);
+        
     }
     
     render() {
         return( 
             <Container>
                 <Header>
-                    <Text style={ styles.text }>Películas</Text>
+                    <Text style={ styles.text }>Pedidos</Text>
                 </Header>
 
-                <FlatList data={ this.state.result } keyExtractor= {(x, i) => i.toString()} renderItem={ (item) => <ItemLayout datos={ item } navigation={ this.state.navigation } /> } />
+                <FlatList data={ this.state.result } keyExtractor= {(x, i) => i.toString()} renderItem={ (item) => <ItemLayoutPedidos datos={ item } navigation={ this.state.navigation } /> } />
 
-                <Footer>
+                {/* <Footer>
                     <Nav navigation={ this.state.navigation } />
-                </Footer>
+                </Footer> */}
             </Container>
         );
     }
@@ -65,4 +67,4 @@ const styles = StyleSheet.create({
     }
   })
 
-export default Movies;
+export default Pedidos;

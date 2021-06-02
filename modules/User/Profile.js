@@ -3,6 +3,7 @@ import {Container, Content, Footer, Header, Label, Left, ListItem, Radio, Right,
 import { StyleSheet, Image, View, Divider } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Nav from "../Components/Nav";
+import API from "../Utils/API";
 
 class Profile extends Component {
     constructor(props) {
@@ -10,6 +11,20 @@ class Profile extends Component {
         this.state = {
             navigation: props.navigation
         };
+    }
+
+    pedidos = async()=>{
+        let response = await API.getPedidos(this.state.email);
+        if(response.status = "Correcto"){
+            let pedidosclient = {
+                pedidos: response.pedidos
+            }
+            console.log("Profile", pedidosclient);
+            AsyncStorage.setItem('pedidosclient', JSON.stringify(pedidosclient))
+            this.props.navigation.navigate('Pedidos')
+        }else if(response.status == "Nulo"){
+            Alert.alert("No tiene pedidos.")
+        }
     }
 
     async componentDidMount() {
@@ -29,7 +44,7 @@ class Profile extends Component {
         }else{
           console.log('LoginComponent', "userData: is null");
         }
-      }
+    }
 
     render() {
         return(
@@ -48,10 +63,10 @@ class Profile extends Component {
                                         </View>
                                         <Label> </Label>
                                         <View>
-                                            <Label>{this.state.name}</Label>
-                                            <Label>{this.state.lastname}</Label>
-                                            <Label>{this.state.age}</Label>  
-                                            <Label>{this.state.email}</Label>
+                                            <Label>Nombre: {this.state.name}</Label>
+                                            <Label>Apellido: {this.state.lastname}</Label>
+                                            <Label>Edad: {this.state.age}</Label>  
+                                            <Label>Correo: {this.state.email}</Label>
                                         </View>
                                 </View>
                                 </Body>
@@ -59,24 +74,7 @@ class Profile extends Component {
                         </Card>
                         <Card>
                             <CardItem header>
-                                <Text>Pedidos</Text>
-                            </CardItem>
-                            <CardItem>
-                                <Body>
-                                    <View style={styles.viewHeader}>
-                                        <Button disables rounded style={styles.button}>
-                                            <Text>Acción</Text>
-                                        </Button>
-                                        <Label> </Label>
-                                        <Button disables rounded style={styles.button}>
-                                            <Text>Comedia</Text>
-                                        </Button>
-                                        <Label> </Label>
-                                        <Button disables rounded>
-                                            <Text>Terror</Text>
-                                        </Button>
-                                    </View>
-                                </Body>
+                                <Text style={ styles.buttonStyle } onPress={ this.pedidos }>Ver Pedidos</Text>
                             </CardItem>
                         </Card>
                     </Content>
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
     },
     buttonStyle: {
       textAlign: 'center',
-      marginLeft: 200
+      marginLeft: 125
     },
     content: {
       //marginTop: -250
