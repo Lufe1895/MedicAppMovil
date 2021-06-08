@@ -11,11 +11,10 @@ function ItemLayoutPedidos(props) {
                 <ListItem>
                     <Row>
                         <Col>
-                            <Text style={{fontWeight: 'bold'}}>Pedido numero: { props.datos.item.id }{"\n"}</Text>
-                            <Text> Costo: ${ props.datos.item.total} {"\n"}</Text>
+                            <Text style={{fontWeight: 'bold'}}>No. de Pedido: { props.datos.item.id }{"\n"}</Text>
+                            <Text> Total: ${ props.datos.item.total} {"\n"}</Text>
                             <Text>Medicamentos: { props.datos.item.meds } {"\n"}</Text>
                             <Text>Direccion: { props.datos.item.address} {"\n"}</Text>
-                            <Text>Status: </Text>
                         </Col>
                     </Row>
                 </ListItem>

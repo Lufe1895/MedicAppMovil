@@ -13,10 +13,6 @@ class Nav extends React.Component {
         this.props.navigation.navigate('Medicines');
     }
 
-    favs = () => {
-        this.props.navigation.navigate('Favs');
-    }
-
     profile = () => {
         this.props.navigation.navigate('Profile');
     }
@@ -30,12 +26,6 @@ class Nav extends React.Component {
                             <Icon name="medkit" />
                             <Text>Medicamentos</Text>
                         </Button>
-
-                        <Button vertical  onPress={this.favs}>
-                            <Icon name="cart" />
-                            <Text>Carrito</Text>
-                        </Button>
-
                         <Button vertical  onPress={this.profile}>
                             <Icon name="person" />
                             <Text>Perfil</Text>
